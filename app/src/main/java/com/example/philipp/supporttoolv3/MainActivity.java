@@ -17,12 +17,12 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 
-    private LoginFragment loginFragment;
-    private RegisterFragment registerFragment;
-    private TicketCreateFragment ticketCreateFragment;
-    private TicketDetailFragment ticketDetailFragment;
-    private TicketListFragment ticketListFragment;
-    private UserFragment userFragment;
+    public LoginFragment loginFragment;
+    public RegisterFragment registerFragment;
+    public TicketCreateFragment ticketCreateFragment;
+    public TicketDetailFragment ticketDetailFragment;
+    public TicketListFragment ticketListFragment;
+    public UserFragment userFragment;
 
 
 
