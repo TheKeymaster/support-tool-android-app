@@ -46,29 +46,29 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View myView = inflater.inflate(R.layout.fragment_login, container, false);
+        View LoginView = inflater.inflate(R.layout.fragment_login, container, false);
 
 
 
         //EditText fields
-        txtMail = myView.findViewById(R.id.txtMail);
-        txtPassword = myView.findViewById(R.id.txtPassword);
+        txtMail = LoginView.findViewById(R.id.txtMail);
+        txtPassword = LoginView.findViewById(R.id.txtPassword);
 
         //login Button
-        btnLogin = (Button) myView.findViewById(R.id.btnLogin);
+        btnLogin = (Button) LoginView.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
 
         //Register Button
-        btnRegister = myView.findViewById(R.id.btnRegister);
+        btnRegister = LoginView.findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(this);
 
         //Demo
-        txtLoginFragment = myView.findViewById(R.id.txtLoginFragment);
-        btnChangeToTicketlist = myView.findViewById(R.id.btnChangeToTicketList);
+        txtLoginFragment = LoginView.findViewById(R.id.txtLoginFragment);
+        btnChangeToTicketlist = LoginView.findViewById(R.id.btnChangeToTicketList);
         btnChangeToTicketlist.setOnClickListener(this);
 
 
-        return myView;
+        return LoginView;
     }
 
 
@@ -78,7 +78,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             new DownloadTask().execute("http://10.0.2.2/src/api/Endpoints/get/tickets.php?authkey=31166d-85d82e-4ea258-3bfa60-c903f5");
         }
         else if (v.getId()==R.id.btnRegister) {
-            txtLoginFragment.setText("Registerversuch: "  + txtMail.getText() + " " + txtPassword.getText());
+            Fragment registerFragment = new RegisterFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.main_frame, registerFragment ); // give your fragment container id in first parameter
+            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+            transaction.commit();
         }
         else if (v.getId()==R.id.btnChangeToTicketList) {
 
