@@ -1,7 +1,7 @@
 package com.example.philipp.supporttoolv3;
 
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 
 /**
@@ -22,6 +22,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private TextView txtLoginFragment, txtMail, txtPassword;
     MainActivity mainActivity = (MainActivity) getActivity();
     TicketListFragment ticketListFragment  = new TicketListFragment();
+    //zu Testzwecken aufrufen können
+    TicketCreateFragment ticketCreateFragment = new TicketCreateFragment();
 
 
     public LoginFragment() {
@@ -69,11 +71,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             txtLoginFragment.setText("Registerversuch: "  + txtMail.getText() + " " + txtPassword.getText());
         }
         else if (v.getId()==R.id.btnChangeToTicketList) {
+
+            //open Fragment
             Fragment ticketListFragment = new TicketListFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.main_frame, ticketListFragment ); // give your fragment container id in first parameter
             transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
             transaction.commit();
         }
+
+
     }
 }

@@ -9,28 +9,38 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="ticket Fragment" />
 
     <EditText
         android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/border_style"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Title"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/txtCreateMessage"
+        android:layout_width="306dp"
+        android:layout_height="287dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/border_style"
         android:ems="10"
+        android:gravity="bottom"
+        android:hint="Message"
         android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCreateTicket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
         android:text="Button" />
 
 </LinearLayout>
