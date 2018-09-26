@@ -2,6 +2,7 @@ package com.example.philipp.supporttoolv3;
 
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,7 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 
 
 /**
@@ -29,8 +40,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public LoginFragment() {
         // Required empty public constructor
     }
-
-
 
 
     @Override
@@ -62,11 +71,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         return myView;
     }
 
+
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.btnLogin) {
-            txtLoginFragment.setText("Loginversuch: " + txtMail.getText() + " " + txtPassword.getText());
-            }
+            new DownloadTask().execute("http://10.0.2.2/src/api/Endpoints/get/tickets.php?authkey=31166d-85d82e-4ea258-3bfa60-c903f5");
+        }
         else if (v.getId()==R.id.btnRegister) {
             txtLoginFragment.setText("Registerversuch: "  + txtMail.getText() + " " + txtPassword.getText());
         }
@@ -81,5 +91,59 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
 
 
+    }
+
+    public String convertInputStreamToString(InputStream stream, int length) throws IOException, UnsupportedEncodingException {
+        Reader reader = null;
+        reader = new InputStreamReader(stream, "UTF-8");
+        char[] buffer = new char[length];
+        reader.read(buffer);
+        return new String(buffer);
+    }
+
+    private String downloadContent(String myurl) throws IOException {
+        InputStream is = null;
+        int length = 500;
+
+        try {
+            URL url = new URL(myurl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("POST");
+            conn.setDoInput(true);
+            conn.connect();
+            int response = conn.getResponseCode();
+            is = conn.getInputStream();
+
+            // Convert the InputStream into a string
+            String contentAsString = convertInputStreamToString(is, length);
+
+
+            return contentAsString;
+        } finally {
+            if (is != null) {
+                is.close();
+            }
+        }
+    }
+
+    private class DownloadTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            //do your request in here so that you don't interrupt the UI thread
+            try {
+                return downloadContent(params[0]);
+            } catch (IOException e) {
+                return "Unable to retrieve data. URL may be invalid.";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //Here you are done with the task
+            txtLoginFragment.setText(result);
+        }
     }
 }
