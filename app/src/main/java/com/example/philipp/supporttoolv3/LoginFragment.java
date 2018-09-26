@@ -16,7 +16,7 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private Button btnLogin;
     private TextView txtLoginFragment;
@@ -33,25 +33,16 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
-
-
-        btnLogin = view.findViewById(R.id.btnLogin);
-        txtLoginFragment = view.findViewById(R.id.txtLoginFragment);
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                txtLoginFragment = v.findViewById(R.id.txtLoginFragment);
-                txtLoginFragment.setText("Test");
-            }
-        });
-
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View myView = inflater.inflate(R.layout.fragment_login, container, false);
+        btnLogin = (Button) myView.findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(this);
+        txtLoginFragment = myView.findViewById(R.id.txtLoginFragment);
+        return myView;
     }
 
-
-
+    @Override
+    public void onClick(View v) {
+        txtLoginFragment.setText("Test");
+    }
 }
