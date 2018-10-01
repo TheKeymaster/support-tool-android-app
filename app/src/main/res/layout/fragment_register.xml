@@ -9,13 +9,18 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/txtRegisterFragment"
+        android:id="@+id/txtHeaderRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register Fragment" />
+        android:gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:text="Register"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/txtMail"
+        android:id="@+id/txtRMail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -26,7 +31,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/txtFirstname"
+        android:id="@+id/txtRFirstname"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -37,7 +42,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/txtLastname"
+        android:id="@+id/txtRLastname"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -48,7 +53,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/txtRPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -56,6 +61,17 @@
         android:background="@drawable/border_style"
         android:ems="10"
         android:hint="Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/txtRPassword2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_style"
+        android:ems="10"
+        android:hint="Repeat Password"
         android:inputType="textPassword" />
 
     <Button

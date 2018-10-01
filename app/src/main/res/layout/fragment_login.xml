@@ -9,10 +9,15 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/txtLoginFragment"
+        android:id="@+id/txtHeaderLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login Fragment" />
+        android:gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:text="Login"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/txtMail"
@@ -49,13 +54,5 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
         android:text="Register" />
-
-    <Button
-        android:id="@+id/btnChangeToTicketList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:text="Change to Ticktlist" />
 
 </LinearLayout>
