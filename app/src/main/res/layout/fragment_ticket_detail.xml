@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,17 +9,6 @@
     android:padding="0dp"
     tools:context=".TicketDetailFragment">
 
-    <TextView
-        android:id="@+id/txtHeaderTicketDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:paddingTop="15dp"
-        android:text="Ticketdetails"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
     <ListView
         android:id="@+id/messageList"
         android:layout_width="match_parent"
@@ -26,32 +16,40 @@
         android:layout_weight="0"
         tools:listitem="@layout/ticket_detail_row" />
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
         android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:padding="0dp">
+        android:background="@drawable/border_style">
 
         <EditText
             android:id="@+id/txtDMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="262dp"
+            android:layout_height="117dp"
             android:ems="10"
             android:gravity="top"
             android:hint="write message"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnSendMessage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnSendMessage"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="Send Message" />
-    </LinearLayout>
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtDMessage"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
 
 
