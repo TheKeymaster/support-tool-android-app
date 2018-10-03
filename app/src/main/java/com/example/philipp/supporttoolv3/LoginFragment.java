@@ -33,7 +33,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
-    private Button btnLogin, btnRegister, btnChangeToTicketlist;
+    public Button btnLogin, btnRegister, btnChangeToTicketlist;
     private TextView txtMail, txtPassword;
     MainActivity mainActivity = (MainActivity) getActivity();
     TicketListFragment ticketListFragment  = new TicketListFragment();
@@ -62,8 +62,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         txtMail = LoginView.findViewById(R.id.txtMail);
         txtPassword = LoginView.findViewById(R.id.txtPassword);
 
-        txtMail.setText(mainActivity.mEmail);
-        txtPassword.setText(mainActivity.mPassword);
+        //Shared Prefs for Testing
+        //txtMail.setText(mainActivity.mEmail);
+        //txtPassword.setText(mainActivity.mPassword);
 
         //login Button
         btnLogin = (Button) LoginView.findViewById(R.id.btnLogin);

@@ -28,7 +28,7 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/border_style"
         android:ems="10"
-        android:gravity="bottom"
+        android:gravity="top"
         android:hint="Message"
         android:inputType="textMultiLine" />
 

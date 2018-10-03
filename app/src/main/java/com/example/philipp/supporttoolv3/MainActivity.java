@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public TicketDetailFragment ticketDetailFragment;
     public TicketListFragment ticketListFragment;
     public UserFragment userFragment;
-    public String mAuthkey, mEmail = "", mPassword = "";
+    public String mAuthkey= "", mEmail = "", mPassword = "";
 
 
 
@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Get Shared Preferences
         SharedPreferences prefs = getSharedPreferences("myfile", 0);
-        mEmail = prefs.getString("email", "");
-        mPassword = prefs.getString("password", "");
+        //mEmail = prefs.getString("email", "");
+        //mPassword = prefs.getString("password", "");
         
 
 
@@ -73,14 +73,26 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.nav_Ticketlist:
-                        setFragment(ticketListFragment);
+                        if (mAuthkey.isEmpty()) {
+                            myToast("You're not logged in!");
+                            //TODO
+                            //SET FOCUS ON previous NAV ITEM....
+                        }
+                        else {
+                            setFragment(ticketListFragment);
+                        }
+
                         return true;
 
-                    case R.id.nav_Exit:
-                        clickOnExit();
+                    case R.id.nav_Logout:
+
+                        setFragment(loginFragment);
+                        mAuthkey = "";
+                        myToast("You're logged out!");
                         return true;
 
-                        default:return false;
+                    default:
+                        return false;
 
                 }
             }
