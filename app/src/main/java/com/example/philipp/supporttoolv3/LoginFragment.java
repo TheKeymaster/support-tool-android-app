@@ -56,6 +56,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         // MainActivity
         mainActivity = (MainActivity)getActivity();
+        mainActivity.setTitle("Login");
 
         //EditText fields
         txtMail = LoginView.findViewById(R.id.txtMail);

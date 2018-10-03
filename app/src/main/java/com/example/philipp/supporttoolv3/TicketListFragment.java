@@ -3,6 +3,7 @@ package com.example.philipp.supporttoolv3;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,17 +26,20 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TicketListFragment extends Fragment {
+public class TicketListFragment extends Fragment implements View.OnClickListener {
 
     private TextView txtTicketList;
     private TextView txtAuthkey;
     MainActivity mainActivity;
     ListView myList;
+    FloatingActionButton faBtnCreateTicket;
     ArrayList<TicketsClass> ticketsArrayList = new ArrayList<TicketsClass>();
 
     public TicketListFragment() {
         // Required empty public constructor
     }
+
+
 
     public class TicketsClass {
         public int id;
@@ -74,9 +79,13 @@ public class TicketListFragment extends Fragment {
 
 
         mainActivity = (MainActivity) getActivity();
+        mainActivity.setTitle("Ticket List");
 
         //if TicketList Fragment is opened again --> Refresh
         mainActivity.ticketListFragment = new TicketListFragment();
+        mainActivity.ticketCreateFragment = new TicketCreateFragment();
+
+        faBtnCreateTicket = TicketListView.findViewById(R.id.faBtnCreateTicket);
 
         myList = TicketListView.findViewById(R.id.myList);
 
@@ -92,9 +101,21 @@ public class TicketListFragment extends Fragment {
             }
         });
 
+        faBtnCreateTicket.setOnClickListener(this);
+
 
         return TicketListView;
     }
+
+    @Override
+    public void onClick(View v) {
+
+        if (v.getId()==R.id.faBtnCreateTicket) {
+            mainActivity.setFragment(mainActivity.ticketCreateFragment);
+        }
+    }
+
+
 
 
     public class DownloadTask extends AsyncTask<String, Void, String> {

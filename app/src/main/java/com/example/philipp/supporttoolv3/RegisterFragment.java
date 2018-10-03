@@ -35,6 +35,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
     MainActivity mainActivity;
 
+
     private TextView txtRegisterFragment;
 
 
@@ -51,6 +52,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         View RegisterView = inflater.inflate(R.layout.fragment_register, container, false);
 
         mainActivity = (MainActivity) getActivity();
+        mainActivity.setTitle("Registration");
         //######
         //Felder initialisieren
         txtRMail = RegisterView.findViewById(R.id.txtRMail);

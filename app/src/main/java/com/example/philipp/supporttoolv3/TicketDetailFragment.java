@@ -89,6 +89,8 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ticket_detail, container, false);
         mainActivity = (MainActivity) getActivity();
+        mainActivity.setTitle("Ticket Detail \uD83D\uDCAC");
+
         myMessageList = view.findViewById(R.id.messageList);
         txtDMessage = view.findViewById(R.id.txtDMessage);
         btnSendMessage = view.findViewById(R.id.btnSendMessage);

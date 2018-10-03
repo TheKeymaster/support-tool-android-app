@@ -7,25 +7,22 @@
     tools:context=".TicketCreateFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ticket Fragment" />
 
     <EditText
-        android:id="@+id/txtTitle"
+        android:id="@+id/txtCTTitle"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
         android:background="@drawable/border_style"
+
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/txtCreateMessage"
-        android:layout_width="306dp"
+        android:id="@+id/txtCTCreateMessage"
+        android:layout_width="300dp"
         android:layout_height="287dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
