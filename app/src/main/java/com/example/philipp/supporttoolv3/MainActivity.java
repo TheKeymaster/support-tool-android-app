@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
     public void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         //set on main_frame
-        fragmentTransaction.replace(R.id.main_frame, fragment);
+        //EXTRA: Add to Back Stack --> now Android Return does work!! CAUSES thats Lists are filled twice or more
+        fragmentTransaction.replace(R.id.main_frame, fragment).addToBackStack("tag");
         fragmentTransaction.commit();
 
     }

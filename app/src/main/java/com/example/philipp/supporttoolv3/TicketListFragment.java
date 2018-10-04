@@ -89,7 +89,10 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
 
         myList = TicketListView.findViewById(R.id.myList);
 
-        new DownloadTask().execute("http://10.0.2.2/src/api/Endpoints/get/tickets.php?authkey=" + mainActivity.mAuthkey);
+        //TODO
+        //if listview is empty then do download
+            new DownloadTask().execute("http://10.0.2.2/src/api/Endpoints/get/tickets.php?authkey=" + mainActivity.mAuthkey);
+
 
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -103,9 +106,13 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
 
         faBtnCreateTicket.setOnClickListener(this);
 
+        //clear Array so Tickets are not listet more than once by clicking Back
+        ticketsArrayList.clear();
 
         return TicketListView;
     }
+
+
 
     @Override
     public void onClick(View v) {

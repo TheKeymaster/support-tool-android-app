@@ -102,8 +102,8 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
 
         new TicketDetailFragment.DownloadTask().execute("http://10.0.2.2/src/api/Endpoints/get/messages.php?authkey=" + mainActivity.mAuthkey + "&ticketid=" + id);
 
-
-
+        //Clear Array so details are not listed more than one time by hitting back button
+        messageArrayList.clear();
         return view;
     }
 
