@@ -174,6 +174,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 //If Conn. to Server is dead
                 if (result.contains("Unable")) {
                     mainActivity.myToast(result);
+                    mainActivity.mAuthkey = "";
                 }
                 else if (result.contains("authkey")) {
                     JSONObject obj = new JSONObject(result);
@@ -184,6 +185,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 }
                 else {
                     mainActivity.myToast("Falsche Zugangsdaten");
+                    mainActivity.mAuthkey = "";
                 }
 
             } catch (JSONException e) {

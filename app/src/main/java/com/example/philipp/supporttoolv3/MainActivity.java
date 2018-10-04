@@ -69,7 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.nav_User:
-                        setFragment(loginFragment);
+                        if (!mAuthkey.isEmpty()) {
+                            myToast("You're already logged in!");
+                        }
+                        else {
+                            setFragment(loginFragment);
+                        }
+
                         return true;
 
                     case R.id.nav_Ticketlist:
@@ -87,8 +93,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_Logout:
 
                         setFragment(loginFragment);
-                        mAuthkey = "";
-                        myToast("You're logged out!");
+                        if (mAuthkey.isEmpty()) {
+
+                        }
+                        else {
+                            mAuthkey = "";
+                            myToast("You're logged out!");
+                        }
+
                         return true;
 
                     default:

@@ -65,7 +65,7 @@
 
         android:layout_alignParentStart="false"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="30dp">
 
     </ListView>
 
@@ -74,7 +74,7 @@
         android:layout_width="64dp"
         android:layout_height="57dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="325dp"
+        android:layout_marginLeft="330dp"
         android:layout_marginBottom="15dp"
         android:clickable="true"
         android:src="@drawable/ic_add_black_24dp"
