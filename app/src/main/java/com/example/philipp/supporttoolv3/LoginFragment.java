@@ -66,7 +66,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         //txtMail.setText(mainActivity.mEmail);
         //txtPassword.setText(mainActivity.mPassword);
 
-        //login Button
+        //Login Button
         btnLogin = (Button) LoginView.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
 
@@ -155,7 +155,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected String doInBackground(String... params) {
-            //do your request in here so that you don't interrupt the UI thread
+
             try {
 
                 return sendContent(params[0]);
@@ -173,18 +173,19 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
                 //If Conn. to Server is dead
                 if (result.contains("Unable")) {
-                    mainActivity.myToast(result);
+                    mainActivity.setAlert("Unable to retrieve Data. Please check your Internet Connection!");
                     mainActivity.mAuthkey = "";
                 }
                 else if (result.contains("authkey")) {
                     JSONObject obj = new JSONObject(result);
                     result = obj.getString("authkey");
-                    mainActivity.setUserData(txtMail.getText().toString(), txtPassword.getText().toString(),result);
+                    mainActivity.mAuthkey=result;
+                    //mainActivity.setUserData(txtMail.getText().toString(), txtPassword.getText().toString(),result);
                     mainActivity.setFragment(mainActivity.ticketListFragment);
 
                 }
                 else {
-                    mainActivity.myToast("Falsche Zugangsdaten");
+                    mainActivity.setAlert("Unfortunately, the E-Mail or the Password are incorrect!");
                     mainActivity.mAuthkey = "";
                 }
 

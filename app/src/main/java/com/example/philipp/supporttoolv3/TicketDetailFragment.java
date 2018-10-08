@@ -130,7 +130,6 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
         protected String doInBackground(String... params) {
             //do your request in here so that you don't interrupt the UI thread
             try {
-                //LoginFragment loginFragment = new LoginFragment();
                 return mainActivity.loginFragment.downloadContent(params[0]);
             } catch (IOException e) {
                 return "Unable to retrieve data. URL may be invalid.";

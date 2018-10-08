@@ -1,6 +1,7 @@
 package com.example.philipp.supporttoolv3;
 
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -89,8 +91,6 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
 
         myList = TicketListView.findViewById(R.id.myList);
 
-        //TODO
-        //if listview is empty then do download
             new DownloadTask().execute("http://10.0.2.2/src/api/Endpoints/get/tickets.php?authkey=" + mainActivity.mAuthkey);
 
 
@@ -183,6 +183,14 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
             }
 
             holder.populateFrom(ticketsArrayList.get(position));
+            if ( position % 2 == 0) {
+                int firstColor = Color.parseColor("#106495ED");
+                convertView.findViewById(R.id.rLRow).setBackgroundColor(firstColor);
+
+            } else {
+
+                convertView.findViewById(R.id.rLRow).setBackgroundColor(Color.WHITE);
+            }
 
             return(convertView);
         }
@@ -193,10 +201,12 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
         public TextView tvTitle = null;
         public TextView tvStatus = null;
 
+
         ViewHolder(View row){
             tvId = row.findViewById(R.id.FirstText);
             tvTitle = row.findViewById(R.id.SecondText);
             tvStatus = row.findViewById(R.id.ThirdText);
+
         }
 
         void populateFrom(TicketsClass tc){

@@ -2,6 +2,8 @@ package com.example.philipp.supporttoolv3;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -70,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_User:
                         if (!mAuthkey.isEmpty()) {
-                            myToast("You're already logged in!");
+                            setAlert("You're already logged in!");
+
                         }
                         else {
                             setFragment(loginFragment);
@@ -80,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_Ticketlist:
                         if (mAuthkey.isEmpty()) {
-                            myToast("You're not logged in!");
+                            //myToast("You're not logged in!");
+                            setAlert("You're not logged in!");
                             //TODO
                             //SET FOCUS ON previous NAV ITEM....
                         }
@@ -98,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else {
                             mAuthkey = "";
-                            myToast("You're logged out!");
+                            setAlert("You're logged out");
+                            //myToast("You're logged out!");
                         }
 
                         return true;
@@ -145,6 +150,23 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment).addToBackStack("tag");
         fragmentTransaction.commit();
 
+    }
+
+    public void setAlert (String textToSee) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(textToSee)
+                .setTitle("Information")
+        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //noting to do??
+            }
+        });
+
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     //modified Toast to toast more simplier

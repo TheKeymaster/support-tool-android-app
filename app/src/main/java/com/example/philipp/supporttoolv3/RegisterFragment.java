@@ -145,8 +145,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                     JSONObject obj = new JSONObject(result);
                     result = obj.getString("status");
 
-                    mainActivity.setFragment(mainActivity.ticketListFragment);
-
                 }
                 else {
                     mainActivity.myToast("Falsche Zugangsdaten");
