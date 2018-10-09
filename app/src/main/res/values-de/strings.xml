@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Supporttool</string>
     <string name="Mail_Adress">E-Mail Adresse</string>
-    <string name="title_login">Einloggen</string>
+    <string name="title_login">Anmelden</string>
     <string name="password">Passwort</string>
     <string name="register">Registrieren</string>
     <string name="title">Titel</string>

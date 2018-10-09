@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Alert Builder
     public void setAlert (String textToSee) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -138,11 +139,8 @@ public class MainActivity extends AppCompatActivity {
         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //noting to do??
             }
         });
-
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }

@@ -36,10 +36,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     MainActivity mainActivity;
 
 
-    private TextView txtRegisterFragment;
-
-
-
     public RegisterFragment() {
         // Required empty public constructor
     }

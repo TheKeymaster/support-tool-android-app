@@ -129,8 +129,8 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
 
             URL url = new URL(myurl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(3000);
-            conn.setConnectTimeout(3000);
+            conn.setReadTimeout(5000);
+            conn.setConnectTimeout(5000);
             conn.setDoOutput( true );
             conn.setInstanceFollowRedirects( false );
             conn.setRequestMethod( "POST" );
