@@ -17,7 +17,7 @@
         android:background="@drawable/border_style"
 
         android:ems="10"
-        android:hint="Title"
+        android:hint="@string/title"
         android:inputType="textPersonName" />
 
     <EditText
@@ -29,7 +29,7 @@
         android:background="@drawable/border_style"
         android:ems="10"
         android:gravity="top"
-        android:hint="Message"
+        android:hint="@string/message"
         android:inputType="textMultiLine" />
 
     <Button
@@ -38,6 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:text="Create Ticket" />
+        android:text="@string/createTicket" />
 
 </LinearLayout>

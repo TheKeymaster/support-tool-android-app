@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Supporttool</string>
+    <string name="Mail_Adress">E-Mail Adresse</string>
+    <string name="title_login">Einloggen</string>
+    <string name="password">Passwort</string>
+    <string name="register">Registrieren</string>
+    <string name="title">Titel</string>
+    <string name="status">Status</string>
+    <string name="title_Ticketlist">Ticket Liste</string>
+    <string name="LoginFailureNoConn">Leider war es unmöglich die Daten zu holen. Bitte überprüfen Sie ihre Internet Verbindung</string>
+    <string name="Login_incorrect">Leider ist angegeben E-Mail oder das Passwort falsch!</string>
+    <string name="id">ID</string>
+    <string name="title_registration">Registrierung</string>
+    <string name="UserCreatedSuccess">Benutzer wurde erstellt! Sie können sich jetzt einloggen!</string>
+    <string name="PasswordNotMatching">Passwörter stimmen nicht überein!</string>
+    <string name="EmailWrongSyntax">Die E-Mail Adresse stimmt nicht!</string>
+    <string name="checkEnteredData">Bitte überprüfen Sie Ihre Eingaben!</string>
+    <string name="first_name">Vorname</string>
+    <string name="last_name">Nachname</string>
+    <string name="repeat_password">Passwort wiederholen</string>
+    <string name="register_user">Benutzer registrieren</string>
+    <string name="createTicket">Ticket erstellen</string>
+    <string name="TicketAddedSuccess">Ticket wurde erfolgreich erstellt!</string>
+    <string name="message">Nachricht</string>
+    <string name="Title_Messages">Ticket Nachrichten von</string>
+    <string name="MessageAddedSucess">Nachricht erfolgreich hinzugefügt!</string>
+    <string name="Title_messageAdd">Nachricht hinzufügen</string>
+    <string name="logout">Ausloggen</string>
+    <string name="AlreadyLoggedIn">Sie sind bereits angemeldet!</string>
+    <string name="NotLoggedIn">Sie sind noch nicht angemeldet!</string>
+    <string name="LoggedOut">Sie wurden ausgeloggt!</string>
 </resources>

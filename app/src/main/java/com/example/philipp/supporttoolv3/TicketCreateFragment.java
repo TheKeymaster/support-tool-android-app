@@ -46,7 +46,7 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
 
 
         mainActivity = (MainActivity) getActivity();
-        mainActivity.setTitle("Create Ticket");
+        mainActivity.setTitle(R.string.createTicket);
 
         txtCTCreateMessage = view.findViewById(R.id.txtCTCreateMessage);
         txtCTTitle = view.findViewById(R.id.txtCTTitle);
@@ -67,7 +67,7 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
                 new SendTask().execute("http://10.0.2.2/src/api/endpoints/post/createticket.php");
             }
             else {
-                mainActivity.myToast("Please check the data you entered");
+                mainActivity.myToast(getText(R.string.checkEnteredData).toString());
             }
 
         }
@@ -84,7 +84,7 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
                 return sendContent(params[0]);
 
             } catch (IOException e) {
-                return "Unable to retrieve data. URL may be invalid.";
+                return getText(R.string.LoginFailureNoConn).toString();
             }
         }
 
@@ -96,20 +96,20 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
 
                 //If Conn. to Server is dead
                 if (result.contains("Unable")) {
-                    mainActivity.myToast(result);
+                    mainActivity.myToast(getText(R.string.LoginFailureNoConn).toString());
                 }
                 else if (result.contains("success")) {
                     JSONObject obj = new JSONObject(result);
                     result = obj.getString("status");
 
-                    mainActivity.myToast("Ticket added successfully!");
+                    mainActivity.myToast(getString(R.string.TicketAddedSuccess));
                     //open TicketList so Customer could add Messages at other tickets
                     mainActivity.setFragment(mainActivity.ticketListFragment  = new TicketListFragment());
 
                 }
-                else {
+                /*else {
                     mainActivity.myToast("Falsche Zugangsdaten");
-                }
+                }*/
 
             } catch (JSONException e) {
                 e.printStackTrace();

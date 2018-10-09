@@ -42,7 +42,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
         View view = inflater.inflate(R.layout.fragment_message_add, container, false);
 
         mainActivity = (MainActivity) getActivity();
-        mainActivity.setTitle("Message add");
+        mainActivity.setTitle(R.string.Title_messageAdd);
         txtAMAddMessage  = view.findViewById(R.id.txtAMAddMessage);
         btnAddMessage = view.findViewById(R.id.btnAddMessage);
 
@@ -76,7 +76,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
                 return sendContent(params[0]);
 
             } catch (IOException e) {
-                return "Unable to retrieve data. URL may be invalid.";
+                return getText(R.string.LoginFailureNoConn).toString();
             }
         }
 
@@ -88,13 +88,13 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
 
                 //If Conn. to Server is dead
                 if (result.contains("Unable")) {
-                    mainActivity.myToast(result);
+                    mainActivity.myToast(getText(R.string.LoginFailureNoConn).toString());
                 }
                 else if (result.contains("success")) {
                     JSONObject obj = new JSONObject(result);
                     result = obj.getString("status");
 
-                    mainActivity.myToast("Message added successfully!");
+                    mainActivity.myToast(getString(R.string.MessageAddedSucess));
                     //open TicketList so Customer could add Messages at other tickets
                     mainActivity.setFragment(mainActivity.ticketListFragment  = new TicketListFragment());
 

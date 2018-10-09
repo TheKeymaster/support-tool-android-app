@@ -52,7 +52,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         View RegisterView = inflater.inflate(R.layout.fragment_register, container, false);
 
         mainActivity = (MainActivity) getActivity();
-        mainActivity.setTitle("Registration");
+        mainActivity.setTitle(R.string.title_registration);
         //######
         //Felder initialisieren
         txtRMail = RegisterView.findViewById(R.id.txtRMail);
@@ -94,19 +94,19 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
                         // SEND USER CREATE TO SERVER
                         new SendTask().execute("http://10.0.2.2/src/api/endpoints/post/createuser.php");
-                        mainActivity.myToast("User created. You can login now!");
+                        mainActivity.myToast(getString(R.string.UserCreatedSuccess));
                         mainActivity.setFragment(mainActivity.loginFragment);
                     }
                     else {
-                        mainActivity.myToast("Password is not matching");
+                        mainActivity.myToast(getString(R.string.PasswordNotMatching));
                     }
                 }
                 else {
-                    mainActivity.myToast("EMail Address typed wrong");
+                    mainActivity.myToast(getString(R.string.EmailWrongSyntax));
                 }
             }
             else {
-                mainActivity.myToast("Please check the data you entered");
+                mainActivity.myToast(getString(R.string.checkEnteredData));
             }
 
 
@@ -127,7 +127,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 return sendContent(params[0]);
 
             } catch (IOException e) {
-                return "Unable to retrieve data. URL may be invalid.";
+                return getText(R.string.LoginFailureNoConn).toString();
             }
         }
 
@@ -139,16 +139,16 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
                 //If Conn. to Server is dead
                 if (result.contains("Unable")) {
-                    mainActivity.myToast(result);
+                    mainActivity.myToast(getText(R.string.LoginFailureNoConn).toString());
                 }
                 else if (result.contains("success")) {
                     JSONObject obj = new JSONObject(result);
                     result = obj.getString("status");
 
                 }
-                else {
+                /*else {
                     mainActivity.myToast("Falsche Zugangsdaten");
-                }
+                }*/
 
             } catch (JSONException e) {
                 e.printStackTrace();

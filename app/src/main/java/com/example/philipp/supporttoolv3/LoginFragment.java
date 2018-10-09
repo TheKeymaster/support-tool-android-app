@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         // MainActivity
         mainActivity = (MainActivity)getActivity();
-        mainActivity.setTitle("Login");
+        mainActivity.setTitle(R.string.title_login);
 
         //EditText fields
         txtMail = LoginView.findViewById(R.id.txtMail);
@@ -173,7 +173,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
                 //If Conn. to Server is dead
                 if (result.contains("Unable")) {
-                    mainActivity.setAlert("Unable to retrieve Data. Please check your Internet Connection!");
+                    mainActivity.setAlert(getString(R.string.LoginFailureNoConn));
                     mainActivity.mAuthkey = "";
                 }
                 else if (result.contains("authkey")) {
@@ -185,7 +185,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
                 }
                 else {
-                    mainActivity.setAlert("Unfortunately, the E-Mail or the Password are incorrect!");
+                    mainActivity.setAlert(getString(R.string.Login_incorrect));
                     mainActivity.mAuthkey = "";
                 }
 

@@ -83,7 +83,7 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
 
 
         mainActivity = (MainActivity) getActivity();
-        mainActivity.setTitle("Ticket List");
+        mainActivity.setTitle(R.string.title_Ticketlist);
 
         //if TicketList Fragment is opened again --> Refresh
         mainActivity.ticketListFragment = new TicketListFragment();
@@ -137,7 +137,7 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
                 LoginFragment loginFragment = new LoginFragment();
                 return loginFragment.downloadContent(params[0]);
             } catch (IOException e) {
-                return "Unable to retrieve data. URL may be invalid.";
+                return getText(R.string.LoginFailureNoConn).toString();
             }
         }
 

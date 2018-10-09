@@ -27,7 +27,7 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/border_style"
         android:ems="10"
-        android:hint="E-Mail Address"
+        android:hint="@string/Mail_Adress"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -38,7 +38,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/border_style"
         android:ems="10"
-        android:hint="First Name"
+        android:hint="@string/first_name"
         android:inputType="textPersonName" />
 
     <EditText
@@ -49,7 +49,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/border_style"
         android:ems="10"
-        android:hint="Last Name"
+        android:hint="@string/last_name"
         android:inputType="textPersonName" />
 
     <EditText
@@ -60,7 +60,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/border_style"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword" />
 
     <EditText
@@ -71,7 +71,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/border_style"
         android:ems="10"
-        android:hint="Repeat Password"
+        android:hint="@string/repeat_password"
         android:inputType="textPassword" />
 
     <Button
@@ -80,6 +80,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:text="Register User" />
+        android:text="@string/register_user" />
 
 </LinearLayout>

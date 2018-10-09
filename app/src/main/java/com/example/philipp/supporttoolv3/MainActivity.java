@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_User:
                         if (!mAuthkey.isEmpty()) {
-                            setAlert("You're already logged in!");
+                            setAlert(getString(R.string.AlreadyLoggedIn));
 
                         }
                         else {
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_Ticketlist:
                         if (mAuthkey.isEmpty()) {
                             //myToast("You're not logged in!");
-                            setAlert("You're not logged in!");
+                            setAlert(getString(R.string.NotLoggedIn));
                             //TODO
                             //SET FOCUS ON previous NAV ITEM....
                         }
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else {
                             mAuthkey = "";
-                            setAlert("You're logged out");
+                            setAlert(getString(R.string.LoggedOut));
                             //myToast("You're logged out!");
                         }
 

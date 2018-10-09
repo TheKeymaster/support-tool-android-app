@@ -91,7 +91,7 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ticket_detail, container, false);
         mainActivity = (MainActivity) getActivity();
-        mainActivity.setTitle("Ticket Messages of " + "#" + id + " \uD83D\uDCAC");
+        mainActivity.setTitle(getString(R.string.Title_Messages) + " #" + id + " \uD83D\uDCAC");
 
         myMessageList = view.findViewById(R.id.messageList);
         faBtnAddMessage = view.findViewById(R.id.faBtnAddMessage);
@@ -130,7 +130,7 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
             try {
                 return mainActivity.loginFragment.downloadContent(params[0]);
             } catch (IOException e) {
-                return "Unable to retrieve data. URL may be invalid.";
+                return getText(R.string.LoginFailureNoConn).toString();
             }
         }
 

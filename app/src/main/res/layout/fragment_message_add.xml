@@ -17,7 +17,7 @@
         android:background="@drawable/border_style"
         android:ems="10"
         android:gravity="top"
-        android:hint="Message"
+        android:hint="@string/message"
         android:inputType="textMultiLine" />
 
     <Button
@@ -26,6 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:text="Add Message" />
+        android:text="@string/Title_messageAdd" />
 
 </LinearLayout>

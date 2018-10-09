@@ -52,7 +52,7 @@
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="15dp"
             android:ems="10"
-            android:hint="E-Mail Adresse"
+            android:hint="@string/Mail_Adress"
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toTopOf="@+id/txtPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
             android:layout_marginStart="70dp"
             android:layout_marginEnd="40dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:text="Login" />
+        android:text="@string/title_login" />
 
     <Button
         android:id="@+id/btnRegister"
@@ -87,6 +87,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:text="Register" />
+        android:text="@string/register" />
 
 </LinearLayout>
