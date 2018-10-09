@@ -4,7 +4,6 @@ package com.example.philipp.supporttoolv3;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     public TicketDetailFragment ticketDetailFragment;
     public TicketListFragment ticketListFragment;
     public MessageAddFragment messageAddFragment;
-    public UserFragment userFragment;
     public String mAuthkey= "", mEmail = "", mPassword = "";
     public String mID = "";
 
@@ -43,10 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Get Shared Preferences
-        SharedPreferences prefs = getSharedPreferences("myfile", 0);
-        //mEmail = prefs.getString("email", "");
-        //mPassword = prefs.getString("password", "");
+
         
 
 
@@ -61,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         ticketDetailFragment = new TicketDetailFragment();
         ticketListFragment  = new TicketListFragment();
         messageAddFragment = new MessageAddFragment();
-        userFragment  = new UserFragment();
+
 
         //Set Start Fragment
         setFragment(loginFragment);
@@ -86,10 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_Ticketlist:
                         if (mAuthkey.isEmpty()) {
-                            //myToast("You're not logged in!");
                             setAlert(getString(R.string.NotLoggedIn));
-                            //TODO
-                            //SET FOCUS ON previous NAV ITEM....
                         }
                         else {
                             setFragment(ticketListFragment);
@@ -106,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                         else {
                             mAuthkey = "";
                             setAlert(getString(R.string.LoggedOut));
-                            //myToast("You're logged out!");
                         }
 
                         return true;
@@ -120,29 +111,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Method for Shared Preferences
-    public void setUserData(String e, String p, String a) {
-        mEmail = e;
-        mPassword = p;
-        mAuthkey = a;
-    }
+
 
     //ONSTOP for Shared Preferences
     @Override
     public void onStop()
     {
         super.onStop();
-        SharedPreferences myPrefs = this.getSharedPreferences("myfile", 0);
-        SharedPreferences.Editor editor = myPrefs.edit();
-        editor.putString("email", mEmail);
-        editor.putString("password", mPassword);
-        editor.apply();
-    }
-
-    //Navigation Bar Click on Exit
-    private void clickOnExit() {
-        finishAffinity();
-
     }
 
     //Change Fragment
