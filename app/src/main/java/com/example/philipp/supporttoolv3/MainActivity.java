@@ -28,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
     public TicketCreateFragment ticketCreateFragment;
     public TicketDetailFragment ticketDetailFragment;
     public TicketListFragment ticketListFragment;
+    public MessageAddFragment messageAddFragment;
     public UserFragment userFragment;
     public String mAuthkey= "", mEmail = "", mPassword = "";
+    public String mID = "";
 
 
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         ticketCreateFragment = new TicketCreateFragment();
         ticketDetailFragment = new TicketDetailFragment();
         ticketListFragment  = new TicketListFragment();
+        messageAddFragment = new MessageAddFragment();
         userFragment  = new UserFragment();
 
         //Set Start Fragment

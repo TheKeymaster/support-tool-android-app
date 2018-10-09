@@ -24,6 +24,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.lang.String.valueOf;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,6 +101,7 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TicketsClass tc = (TicketsClass) parent.getAdapter().getItem(position);
                 mainActivity.ticketDetailFragment.id = tc.id;
+                mainActivity.mID = Long.toString(tc.id);
                 mainActivity.getSupportFragmentManager().beginTransaction().remove(mainActivity.ticketDetailFragment).commit();
                 mainActivity.setFragment(mainActivity.ticketDetailFragment);
             }

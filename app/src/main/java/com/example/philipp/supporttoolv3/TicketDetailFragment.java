@@ -3,6 +3,7 @@ package com.example.philipp.supporttoolv3;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -26,8 +27,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -40,8 +43,7 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
     public int id;
     private MainActivity mainActivity;
     ListView myMessageList;
-    EditText txtDMessage;
-    Button btnSendMessage;
+    FloatingActionButton faBtnAddMessage;
     ArrayList<MessageClass> messageArrayList = new ArrayList<MessageClass>();
 
 
@@ -89,12 +91,12 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ticket_detail, container, false);
         mainActivity = (MainActivity) getActivity();
-        mainActivity.setTitle("Ticket Detail \uD83D\uDCAC");
+        mainActivity.setTitle("Ticket Messages of " + "#" + id + " \uD83D\uDCAC");
 
         myMessageList = view.findViewById(R.id.messageList);
-        txtDMessage = view.findViewById(R.id.txtDMessage);
-        btnSendMessage = view.findViewById(R.id.btnSendMessage);
-        btnSendMessage.setOnClickListener(this);
+        faBtnAddMessage = view.findViewById(R.id.faBtnAddMessage);
+
+        faBtnAddMessage.setOnClickListener(this);
 
 
         //If the Detail Fragment is opened again -->Refresh
@@ -109,13 +111,9 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.btnSendMessage) {
-            new SendTask().execute("http://10.0.2.2/src/api/endpoints/post/createmessage.php");
-            //mainActivity.setFragment(mainActivity.ticketListFragment  = new TicketListFragment());
-
+        if (v.getId()==R.id.faBtnAddMessage) {
+            mainActivity.setFragment(mainActivity.messageAddFragment = new MessageAddFragment());
         }
-
-
     }
 
 
@@ -140,6 +138,7 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
         protected void onPostExecute(String result) {
             try{
                 JSONArray jArray = new JSONArray(result);
+
                 for(int i=0;i<jArray.length();i++){
                     JSONObject json_data = jArray.getJSONObject(i);
                     MessageClass resultRow = new MessageClass(json_data.getString("title"), json_data.getInt("status"),
@@ -205,92 +204,6 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
             txtTDMessage.setText(mc.body);
         }
     }
-    //##################################################################################
-    //Send Task to add Message
-    public class SendTask extends AsyncTask<String, Void, String> {
 
-        @Override
-        protected String doInBackground(String... params) {
-            //do your request in here so that you don't interrupt the UI thread
-            try {
-
-                return sendContent(params[0]);
-
-            } catch (IOException e) {
-                return "Unable to retrieve data. URL may be invalid.";
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            //Here you are done with the task
-
-            try {
-
-                //If Conn. to Server is dead
-                if (result.contains("Unable")) {
-                    mainActivity.myToast(result);
-                }
-                else if (result.contains("success")) {
-                    JSONObject obj = new JSONObject(result);
-                    result = obj.getString("status");
-
-                    mainActivity.myToast("Message added successfully!");
-                    //open TicketList so Customer could add Messages at other tickets
-                    mainActivity.setFragment(mainActivity.ticketListFragment  = new TicketListFragment());
-
-                }
-                else {
-                    mainActivity.myToast("Falsche Zugangsdaten");
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public String sendContent(String myurl) throws IOException {
-        InputStream is = null;
-        int length = 5000;
-        String authkey = null;
-
-        try {
-            String urlParameters = "authkey=" + mainActivity.mAuthkey+ "&" + "ticketid=" + id + "&" + "body=" + txtDMessage.getText();
-            String responseText;
-            byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
-
-            URL url = new URL(myurl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(3000);
-            conn.setConnectTimeout(3000);
-            conn.setDoOutput( true );
-            conn.setInstanceFollowRedirects( false );
-            conn.setRequestMethod( "POST" );
-            conn.setUseCaches( false );
-
-            try( DataOutputStream wr = new DataOutputStream( conn.getOutputStream())) {
-                wr.write(postData);
-
-            }
-
-            Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-
-            //convert Inputstream to String
-            StringBuilder sb = new StringBuilder();
-            for (int c; (c = in.read()) >= 0;) {
-                sb.append((char) c);
-            }
-            String response = sb.toString();
-
-            return response;
-
-        } finally {
-            if (is != null) {
-                is.close();
-            }
-        }
-
-    }
 }
 
