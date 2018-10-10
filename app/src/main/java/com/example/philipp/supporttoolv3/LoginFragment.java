@@ -109,8 +109,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         try {
             URL url = new URL(myurl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000 /* milliseconds */);
-            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setReadTimeout(5000 /* milliseconds */);
+            conn.setConnectTimeout(5000 /* milliseconds */);
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
             conn.connect();
@@ -172,8 +172,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             try {
 
                 //If Conn. to Server is dead
-                if (result.contains("Unable")) {
-                    mainActivity.setAlert(getString(R.string.LoginFailureNoConn));
+                if (result.contains(getText(R.string.LoginFailureNoConn))) {
+                    mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
                     mainActivity.mAuthkey = "";
                 }
                 else if (result.contains("authkey")) {

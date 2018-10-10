@@ -144,16 +144,21 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
         @Override
         protected void onPostExecute(String result) {
             try{
-                JSONArray jArray = new JSONArray(result);
-                for(int i=0;i<jArray.length();i++){
-                    JSONObject json_data = jArray.getJSONObject(i);
-                    TicketsClass resultRow = new TicketsClass(json_data.getInt("id"), json_data.getString("title"), json_data.getInt("status"));
-                    ticketsArrayList.add(resultRow);
+                if (result.contains(getText(R.string.LoginFailureNoConn))) {
+                    mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
                 }
+                else {
+                    JSONArray jArray = new JSONArray(result);
+                    for (int i = 0; i < jArray.length(); i++) {
+                        JSONObject json_data = jArray.getJSONObject(i);
+                        TicketsClass resultRow = new TicketsClass(json_data.getInt("id"), json_data.getString("title"), json_data.getInt("status"));
+                        ticketsArrayList.add(resultRow);
+                    }
 
 
-                aa = new FancyAdapter();
-                myList.setAdapter(aa);
+                    aa = new FancyAdapter();
+                    myList.setAdapter(aa);
+                }
             }
             catch (JSONException e){
                 Log.e("log_tag", "Fehler " + e.toString());

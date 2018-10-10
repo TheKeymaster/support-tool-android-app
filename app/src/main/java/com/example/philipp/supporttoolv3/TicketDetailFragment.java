@@ -137,14 +137,21 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
         @Override
         protected void onPostExecute(String result) {
             try{
-                JSONArray jArray = new JSONArray(result);
 
-                for(int i=0;i<jArray.length();i++){
-                    JSONObject json_data = jArray.getJSONObject(i);
-                    MessageClass resultRow = new MessageClass(json_data.getString("title"), json_data.getInt("status"),
-                            json_data.getString("createdat"), json_data.getString("createdby"), json_data.getString("body"));
+                if (result.contains(getText(R.string.LoginFailureNoConn))) {
+                    mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
+                }
+                else {
 
-                    messageArrayList.add(resultRow);
+                    JSONArray jArray = new JSONArray(result);
+
+                    for (int i = 0; i < jArray.length(); i++) {
+                        JSONObject json_data = jArray.getJSONObject(i);
+                        MessageClass resultRow = new MessageClass(json_data.getString("title"), json_data.getInt("status"),
+                                json_data.getString("createdat"), json_data.getString("createdby"), json_data.getString("body"));
+
+                        messageArrayList.add(resultRow);
+                    }
                 }
 
 

@@ -134,8 +134,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             try {
 
                 //If Conn. to Server is dead
-                if (result.contains("Unable")) {
-                    mainActivity.myToast(getText(R.string.LoginFailureNoConn).toString());
+                if (result.contains(getText(R.string.LoginFailureNoConn))) {
+                    mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
                 }
                 else if (result.contains("success")) {
                     JSONObject obj = new JSONObject(result);
