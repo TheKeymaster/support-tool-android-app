@@ -93,7 +93,7 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
 
         myList = TicketListView.findViewById(R.id.myList);
 
-            new DownloadTask().execute("http://10.0.2.2/src/api/Endpoints/get/tickets.php?authkey=" + mainActivity.mAuthkey);
+            new DownloadTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/get/tickets.php?authkey=" + mainActivity.mAuthkey);
 
 
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

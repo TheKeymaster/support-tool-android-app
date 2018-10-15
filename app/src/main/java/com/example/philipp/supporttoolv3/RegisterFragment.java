@@ -89,7 +89,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                     if (txtRPassword.getText().toString().equals(txtRPassword2.getText().toString())) {
 
                         // SEND USER CREATE TO SERVER
-                        new SendTask().execute("http://10.0.2.2/src/api/endpoints/post/createuser.php");
+                        new SendTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/post/createuser.php");
                         mainActivity.myToast(getString(R.string.UserCreatedSuccess));
                         mainActivity.setFragment(mainActivity.loginFragment);
                     }

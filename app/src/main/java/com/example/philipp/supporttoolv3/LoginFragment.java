@@ -82,7 +82,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.btnLogin) {
-            new SendTask().execute("http://10.0.2.2/src/api/endpoints/post/uservalidate.php");
+            new SendTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/post/uservalidate.php");
 
 
         }
@@ -104,7 +104,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     public String downloadContent(String myurl) throws IOException {
         InputStream is = null;
-        int length = 5000;
+        int length = 500000;
 
         try {
             URL url = new URL(myurl);
@@ -117,8 +117,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             int response = conn.getResponseCode();
             is = conn.getInputStream();
 
+
+            StringBuilder sb = new StringBuilder();
+            for (int c; (c = is.read()) >= 0;) {
+                sb.append((char) c);
+            }
+            String contentAsString = sb.toString();
             // Convert the InputStream into a string
-            String contentAsString = convertInputStreamToString(is, length);
+            //String contentAsString = convertInputStreamToString(is, length);
 
 
 

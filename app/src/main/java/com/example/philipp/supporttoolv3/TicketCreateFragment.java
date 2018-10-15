@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +33,7 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
     private EditText txtCTCreateMessage, txtCTTitle;
     private Button btnCreateTicket;
     MainActivity mainActivity;
+    ProgressBar pBCreateTicket;
 
     public TicketCreateFragment() {
         // Required empty public constructor
@@ -51,6 +53,7 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
         txtCTCreateMessage = view.findViewById(R.id.txtCTCreateMessage);
         txtCTTitle = view.findViewById(R.id.txtCTTitle);
         btnCreateTicket = view.findViewById(R.id.btnCreateTicket);
+        pBCreateTicket = view.findViewById(R.id.pBCreateTicket);
 
         btnCreateTicket.setOnClickListener(this);
 
@@ -64,7 +67,8 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         if (v.getId()==R.id.btnCreateTicket) {
             if (!(txtCTTitle.getText().toString().isEmpty() || txtCTCreateMessage.getText().toString().isEmpty())) {
-                new SendTask().execute("http://10.0.2.2/src/api/endpoints/post/createticket.php");
+                new SendTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/post/createticket.php");
+                pBCreateTicket.setVisibility(View.VISIBLE);
             }
             else {
                 mainActivity.myToast(getText(R.string.checkEnteredData).toString());

@@ -102,7 +102,7 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
         //If the Detail Fragment is opened again -->Refresh
         mainActivity.ticketDetailFragment = new TicketDetailFragment();
 
-        new TicketDetailFragment.DownloadTask().execute("http://10.0.2.2/src/api/Endpoints/get/messages.php?authkey=" + mainActivity.mAuthkey + "&ticketid=" + id);
+        new TicketDetailFragment.DownloadTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/get/messages.php?authkey=" + mainActivity.mAuthkey + "&ticketid=" + id);
 
         //Clear Array so details are not listed more than one time by hitting back button
         messageArrayList.clear();
@@ -119,7 +119,7 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
 
 
     public void fillList(int id, String ak) {
-        new TicketDetailFragment.DownloadTask().execute("http://10.0.2.2/src/api/Endpoints/get/messages.php?authkey=" + ak + "&ticketid=" + id);
+        new TicketDetailFragment.DownloadTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/get/messages.php?authkey=" + ak + "&ticketid=" + id);
     }
 
     public class DownloadTask extends AsyncTask<String, Void, String> {

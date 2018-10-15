@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -30,6 +31,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
     MainActivity mainActivity;
     TextView txtAMAddMessage;
     Button btnAddMessage;
+    ProgressBar progressBar;
 
     public MessageAddFragment() {
         // Required empty public constructor
@@ -45,6 +47,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
         mainActivity.setTitle(R.string.Title_messageAdd);
         txtAMAddMessage  = view.findViewById(R.id.txtAMAddMessage);
         btnAddMessage = view.findViewById(R.id.btnAddMessage);
+        progressBar = view.findViewById(R.id.progressBar);
 
         btnAddMessage.setOnClickListener(this);
 
@@ -59,7 +62,8 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         if (v.getId()==R.id.btnAddMessage) {
 
-            new SendTask().execute("http://10.0.2.2/src/api/endpoints/post/createmessage.php");
+            new SendTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/post/createmessage.php");
+            progressBar.setVisibility(View.VISIBLE);
 
         }
     }
@@ -72,9 +76,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
         protected String doInBackground(String... params) {
             //do your request in here so that you don't interrupt the UI thread
             try {
-
                 return sendContent(params[0]);
-
             } catch (IOException e) {
                 return getText(R.string.LoginFailureNoConn).toString();
             }
@@ -83,6 +85,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
         @Override
         protected void onPostExecute(String result) {
             //Here you are done with the task
+
 
             try {
 
@@ -111,7 +114,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
 
     public String sendContent(String myurl) throws IOException {
         InputStream is = null;
-        int length = 5000;
+        int length = 500000;
         String authkey = null;
 
         try {
