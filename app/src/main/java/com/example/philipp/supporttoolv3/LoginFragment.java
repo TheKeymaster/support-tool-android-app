@@ -207,7 +207,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         String authkey = null;
 
         try {
-            String urlParameters = "email=" + txtMail.getText()+ "&" + "password=" + txtPassword.getText();
+            String urlParameters = "email=" + txtMail.getText()+ "&" + "password=" + txtPassword.getText() + "&ismobile=true";
             String responseText;
             byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
 
