@@ -69,6 +69,7 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
             if (!(txtCTTitle.getText().toString().isEmpty() || txtCTCreateMessage.getText().toString().isEmpty())) {
                 new SendTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/post/createticket.php");
                 pBCreateTicket.setVisibility(View.VISIBLE);
+                btnCreateTicket.setEnabled(false);
             }
             else {
                 mainActivity.myToast(getText(R.string.checkEnteredData).toString());
@@ -101,6 +102,8 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
                 //If Conn. to Server is dead
                 if (result.contains(getText(R.string.LoginFailureNoConn))) {
                     mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
+                    pBCreateTicket.setVisibility(View.INVISIBLE);
+                    btnCreateTicket.setEnabled(true);
                 }
                 else if (result.contains("success")) {
                     JSONObject obj = new JSONObject(result);

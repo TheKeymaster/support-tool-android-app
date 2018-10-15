@@ -64,6 +64,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
 
             new SendTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/post/createmessage.php");
             progressBar.setVisibility(View.VISIBLE);
+            btnAddMessage.setEnabled(false);
 
         }
     }
@@ -92,6 +93,8 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
                 //If Conn. to Server is dead
                 if (result.contains(getText(R.string.LoginFailureNoConn))) {
                     mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
+                    progressBar.setVisibility(View.INVISIBLE);
+                    btnAddMessage.setEnabled(true);
                 }
                 else if (result.contains("success")) {
                     JSONObject obj = new JSONObject(result);
@@ -114,7 +117,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
 
     public String sendContent(String myurl) throws IOException {
         InputStream is = null;
-        int length = 500000;
+        int length = 10000;
         String authkey = null;
 
         try {

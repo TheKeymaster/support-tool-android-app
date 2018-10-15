@@ -8,7 +8,7 @@
     <string name="title">Titel</string>
     <string name="status">Status</string>
     <string name="title_Ticketlist">Ticket Liste</string>
-    <string name="LoginFailureNoConn">Leider war es unmöglich die Daten zu holen. Bitte überprüfen Sie ihre Internet Verbindung</string>
+    <string name="LoginFailureNoConn">Aufgrund eines Fehlers konnten die Daten nicht geladen werden. Bitte überprüfen Sie ihre Internet Verbindung</string>
     <string name="Login_incorrect">Leider ist angegeben E-Mail oder das Passwort falsch!</string>
     <string name="id">ID</string>
     <string name="title_registration">Registrierung</string>
