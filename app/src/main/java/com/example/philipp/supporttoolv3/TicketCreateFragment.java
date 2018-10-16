@@ -114,9 +114,6 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
                     mainActivity.setFragment(mainActivity.ticketListFragment  = new TicketListFragment());
 
                 }
-                /*else {
-                    mainActivity.myToast("Falsche Zugangsdaten");
-                }*/
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -130,6 +127,7 @@ public class TicketCreateFragment extends Fragment implements View.OnClickListen
         String authkey = null;
 
         try {
+            //Send POST Request
             String urlParameters = "authkey=" + mainActivity.mAuthkey+ "&" + "title=" + txtCTTitle.getText()+ "&" + "body=" + txtCTCreateMessage.getText();
             String responseText;
             byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );

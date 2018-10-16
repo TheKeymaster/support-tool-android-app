@@ -49,8 +49,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
         mainActivity = (MainActivity) getActivity();
         mainActivity.setTitle(R.string.title_registration);
-        //######
-        //Felder initialisieren
+
+
         txtRMail = RegisterView.findViewById(R.id.txtRMail);
         txtRFirstname = RegisterView.findViewById(R.id.txtRFirstname);
         txtRLastname = RegisterView.findViewById(R.id.txtRLastname);
@@ -142,9 +142,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                     result = obj.getString("status");
 
                 }
-                /*else {
-                    mainActivity.myToast("Falsche Zugangsdaten");
-                }*/
 
             } catch (JSONException e) {
                 e.printStackTrace();

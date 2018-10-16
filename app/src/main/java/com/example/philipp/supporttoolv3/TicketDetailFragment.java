@@ -51,6 +51,8 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
         // Required empty public constructor
     }
 
+    //class to set rows
+
     public class MessageClass {
         public String title;
         public String status;
@@ -118,9 +120,9 @@ public class TicketDetailFragment extends Fragment implements View.OnClickListen
 
 
 
-    public void fillList(int id, String ak) {
+    /*public void fillList(int id, String ak) {
         new TicketDetailFragment.DownloadTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/get/messages.php?authkey=" + ak + "&ticketid=" + id);
-    }
+    }*/
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
 

@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     public TicketDetailFragment ticketDetailFragment;
     public TicketListFragment ticketListFragment;
     public MessageAddFragment messageAddFragment;
-    public String mAuthkey= "", mEmail = "", mPassword = "";
+    public String mAuthkey= "";
+    //public String mEmail = "", mPassword = "";
     public String mID = "";
 
 
@@ -40,11 +41,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        
-
-
 
         mMainNav = findViewById(R.id.main_nav);
         mMainFrame = findViewById(R.id.main_frame);
@@ -62,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         setFragment(loginFragment);
 
 
+        //Navigation Bar Bottom Click Events
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -113,14 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    //ONSTOP for Shared Preferences
-    @Override
-    public void onStop()
-    {
-        super.onStop();
-    }
-
-    //Change Fragment
+    //method to Change Fragment
     public void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         //set on main_frame
@@ -130,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Alert Builder
+    //method for Alert
     public void setAlert (String textToSee) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -145,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    //modified Toast to toast more simplier
+    //modified Toast method to toast simplier
     public void myToast(String string) {
         Toast.makeText(this, string, Toast.LENGTH_LONG).show();
     }

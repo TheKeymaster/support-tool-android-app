@@ -36,9 +36,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public Button btnLogin, btnRegister, btnChangeToTicketlist;
     private TextView txtMail, txtPassword;
     MainActivity mainActivity = (MainActivity) getActivity();
-    TicketListFragment ticketListFragment  = new TicketListFragment();
-    //zu Testzwecken aufrufen können
-    TicketCreateFragment ticketCreateFragment = new TicketCreateFragment();
     private View LoginView;
     String responseString="";
 
@@ -62,10 +59,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         txtMail = LoginView.findViewById(R.id.txtMail);
         txtPassword = LoginView.findViewById(R.id.txtPassword);
 
-        //Shared Prefs for Testing
-        //txtMail.setText(mainActivity.mEmail);
-        //txtPassword.setText(mainActivity.mPassword);
-
         //Login Button
         btnLogin = (Button) LoginView.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
@@ -82,18 +75,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.btnLogin) {
+            //Send POST Request to validate user and get authkey
             new SendTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/post/uservalidate.php");
-
 
         }
         else if (v.getId()==R.id.btnRegister) {
-
+            //go to Register Fragment
             mainActivity.setFragment(mainActivity.registerFragment);
 
         }
 
     }
-
+    //Convert InputStream to String
     public String convertInputStreamToString(InputStream stream, int length) throws IOException, UnsupportedEncodingException {
         Reader reader = null;
         reader = new InputStreamReader(stream, "UTF-8");
@@ -102,6 +95,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         return new String(buffer);
     }
 
+    //try to connect to php file at server and build a String
     public String downloadContent(String myurl) throws IOException {
         InputStream is = null;
         int length = 500000;
@@ -123,12 +117,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 sb.append((char) c);
             }
             String contentAsString = sb.toString();
-            // Convert the InputStream into a string
-            //String contentAsString = convertInputStreamToString(is, length);
-
-
 
             return contentAsString;
+
         } finally {
             if (is != null) {
                 is.close();
@@ -138,6 +129,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
 
 
+
+    //class for GET Requests
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -156,7 +149,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         }
     }
-
+    //class for POST Requests
     public class SendTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -182,11 +175,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
                     mainActivity.mAuthkey = "";
                 }
+                //if authkey is in result
                 else if (result.contains("authkey")) {
                     JSONObject obj = new JSONObject(result);
                     result = obj.getString("authkey");
                     mainActivity.mAuthkey=result;
-                    //mainActivity.setUserData(txtMail.getText().toString(), txtPassword.getText().toString(),result);
+                    //change to List of Tickets
                     mainActivity.setFragment(mainActivity.ticketListFragment);
 
                 }
@@ -203,10 +197,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     public String sendContent(String myurl) throws IOException {
         InputStream is = null;
-        int length = 5000;
+        int length = 5000;  //max length of return String
         String authkey = null;
 
         try {
+            //add params to post requests
             String urlParameters = "email=" + txtMail.getText()+ "&" + "password=" + txtPassword.getText() + "&ismobile=true";
             String responseText;
             byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );

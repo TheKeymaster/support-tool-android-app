@@ -148,6 +148,7 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
                     mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
                 }
                 else {
+                    //get into Rows
                     JSONArray jArray = new JSONArray(result);
                     for (int i = 0; i < jArray.length(); i++) {
                         JSONObject json_data = jArray.getJSONObject(i);
@@ -191,6 +192,7 @@ public class TicketListFragment extends Fragment implements View.OnClickListener
             }
 
             holder.populateFrom(ticketsArrayList.get(position));
+            //set Colors of Rows (even-odd)
             if ( position % 2 == 0) {
                 int firstColor = Color.parseColor("#106495ED");
                 convertView.findViewById(R.id.rLRow).setBackgroundColor(firstColor);

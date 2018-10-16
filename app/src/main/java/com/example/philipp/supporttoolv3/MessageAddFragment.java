@@ -63,6 +63,8 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
         if (v.getId()==R.id.btnAddMessage) {
 
             new SendTask().execute("https://support-tool-backend.brader.co.at/src/api/Endpoints/post/createmessage.php");
+
+            //Set Progressbar, Btn disabled...
             progressBar.setVisibility(View.VISIBLE);
             btnAddMessage.setEnabled(false);
 
@@ -75,7 +77,7 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
 
         @Override
         protected String doInBackground(String... params) {
-            //do your request in here so that you don't interrupt the UI thread
+
             try {
                 return sendContent(params[0]);
             } catch (IOException e) {
@@ -85,33 +87,21 @@ public class MessageAddFragment extends Fragment implements View.OnClickListener
 
         @Override
         protected void onPostExecute(String result) {
-            //Here you are done with the task
 
-
-            try {
-
-                //If Conn. to Server is dead
-                if (result.contains(getText(R.string.LoginFailureNoConn))) {
-                    mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
-                    progressBar.setVisibility(View.INVISIBLE);
-                    btnAddMessage.setEnabled(true);
-                }
-                else if (result.contains("success")) {
-                    JSONObject obj = new JSONObject(result);
-                    result = obj.getString("status");
-
-                    mainActivity.myToast(getString(R.string.MessageAddedSucess));
-                    //open TicketList so Customer could add Messages at other tickets
-                    mainActivity.setFragment(mainActivity.ticketListFragment  = new TicketListFragment());
-
-                }
-                else {
-                    mainActivity.myToast("Falsche Zugangsdaten");
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+            //If Conn. to Server is dead
+            if (result.contains(getText(R.string.LoginFailureNoConn))) {
+                mainActivity.setAlert(getText(R.string.LoginFailureNoConn).toString());
+                //set progressbar and btn back to default
+                progressBar.setVisibility(View.INVISIBLE);
+                btnAddMessage.setEnabled(true);
             }
+            //if success than open TicketList
+            else if (result.contains("success")) {
+                mainActivity.myToast(getString(R.string.MessageAddedSucess));
+                //open TicketList so Customer could add Messages at other tickets
+                mainActivity.setFragment(mainActivity.ticketListFragment  = new TicketListFragment());
+            }
+
         }
     }
 
