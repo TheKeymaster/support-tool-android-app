@@ -2,6 +2,8 @@ package com.example.philipp.supporttoolv3;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
+
+import java.util.Optional;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
     public TicketCreateFragment ticketCreateFragment;
     public TicketDetailFragment ticketDetailFragment;
     public TicketListFragment ticketListFragment;
-    public UserFragment userFragment;
+    public MessageAddFragment messageAddFragment;
+    public String mAuthkey= "";
+    //public String mEmail = "", mPassword = "";
+    public String mID = "";
+
 
 
 
@@ -36,15 +45,20 @@ public class MainActivity extends AppCompatActivity {
         mMainNav = findViewById(R.id.main_nav);
         mMainFrame = findViewById(R.id.main_frame);
 
+        //create all Fragments
         loginFragment = new LoginFragment();
         registerFragment = new RegisterFragment();
         ticketCreateFragment = new TicketCreateFragment();
         ticketDetailFragment = new TicketDetailFragment();
         ticketListFragment  = new TicketListFragment();
-        userFragment  = new UserFragment();
+        messageAddFragment = new MessageAddFragment();
 
+
+        //Set Start Fragment
         setFragment(loginFragment);
 
+
+        //Navigation Bar Bottom Click Events
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -52,44 +66,78 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.nav_User:
-                        setFragment(userFragment);
+                        if (!mAuthkey.isEmpty()) {
+                            setAlert(getString(R.string.AlreadyLoggedIn));
+
+                        }
+                        else {
+                            setFragment(loginFragment);
+                        }
+
                         return true;
 
                     case R.id.nav_Ticketlist:
-                        setFragment(ticketListFragment);
+                        if (mAuthkey.isEmpty()) {
+                            setAlert(getString(R.string.NotLoggedIn));
+                        }
+                        else {
+                            setFragment(ticketListFragment);
+                        }
+
                         return true;
 
-                    case R.id.nav_Exit:
-                        clickOnExit();
+                    case R.id.nav_Logout:
+
+                        setFragment(loginFragment);
+                        if (mAuthkey.isEmpty()) {
+
+                        }
+                        else {
+                            mAuthkey = "";
+                            setAlert(getString(R.string.LoggedOut));
+                        }
+
                         return true;
 
-                        default:return false;
-
+                    default:
+                        return false;
 
                 }
-
-
             }
         });
 
     }
 
-    private void clickOnExit() {
-        finishAffinity();
-
-    }
 
 
+    //method to Change Fragment
     public void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_frame, fragment);
+        //set on main_frame
+        //EXTRA: Add to Back Stack --> now Android Return does work!! CAUSES thats Lists are filled twice or more
+        fragmentTransaction.replace(R.id.main_frame, fragment).addToBackStack("tag");
         fragmentTransaction.commit();
+
     }
 
+    //method for Alert
+    public void setAlert (String textToSee) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        builder.setMessage(textToSee)
+                .setTitle("Information")
+        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
-
-
-
+    //modified Toast method to toast simplier
+    public void myToast(String string) {
+        Toast.makeText(this, string, Toast.LENGTH_LONG).show();
+    }
 
 }

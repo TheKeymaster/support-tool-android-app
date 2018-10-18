@@ -5,15 +5,15 @@
     <item
         android:id="@+id/nav_User"
         android:icon="@drawable/baseline_person_black_24dp"
-        android:title="User" />
+        android:title="@string/title_login" />
     <item
         android:id="@+id/nav_Ticketlist"
         android:icon="@drawable/baseline_format_list_bulleted_black_24dp"
-        android:title="TicketList" />
+        android:title="@string/title_Ticketlist" />
     <item
-        android:id="@+id/nav_Exit"
+        android:id="@+id/nav_Logout"
         android:icon="@drawable/baseline_exit_to_app_black_24dp"
-        android:title="Exit" />
+        android:title="@string/logout" />
 
 
 </menu>
